@@ -1,0 +1,24 @@
+<!doctype html>
+<html ng-app="CGullWebsite">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="frontpage.js"></script>
+    <link rel="icon" href="res/img/logo.png">
+    <!-- <link rel="stylesheet" href="res/stylesheets/cgullstyle.css"> -->
+  </head>
+  <body>
+    <h2>CGulls' Seagull Themed Merchendise!</h2>
+    <div ng-controller="FrontPageController as frontPage">
+      <span>Showing all {{frontPage.entryCt()}} results</span>
+      [ <a href="" ng-click="frontPage.showListingsReplacement()">Show Results</a> ]
+      <ul class="unstyled">
+        <li ng-repeat="item in frontPage.listings">
+          <label class = "button">
+            <input type="button" ng-click="frontPage.showItemDesc(item)" value="Toggle description">
+            Item: {{item.name}} ({{item.price}}) {{item.description}}
+          </label>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
