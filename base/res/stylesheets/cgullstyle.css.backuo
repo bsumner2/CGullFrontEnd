@@ -1,0 +1,45 @@
+:root {
+  --bgrndcol:#211E1C;
+  --brdrcol:#110F0E;
+  --txtcol:#8083F1;
+
+  --libgrndcol:#211E1CF0;
+  --librdrcol:#110F0E3E;
+  --litxtcol:#E63462;
+/*  --slibgrndcol:#3A405AF0;*/
+  --slibgrndcol:#3A405A;
+  --slibrdrcol:#1D202EB0;
+  --slitxtcol:#DFE0E2;
+}
+
+body {
+  background:var(--bgrndcol);
+  font-family;'Consolas', Mono, Sans Serif;
+  color:var(--txtcol);
+}
+
+h2 {
+  text-align:center;
+}
+
+.list_item_btn {
+  background:var(--slibgrndcol);
+  color:var(--slitxtcol);
+
+}
+
+.productlist {
+  padding: 20px;
+  border:var(--librdrcol);
+}
+
+
+.product {
+  background:var(--libgrndcol);
+  color:var(--litxtcol);
+  padding:5px;
+  margin-left:32px;
+}
+
+
+

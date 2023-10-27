@@ -1,0 +1,58 @@
+
+/* Style the overall page */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the header */
+h2 {
+  background-color: #0074D9;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Style the container for product listings */
+.productlist {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/* Style individual product items */
+.product {
+  width: 30%; /* Adjust this value to control the width of each item */
+  margin: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the description button */
+.list_item_btn {
+  background-color: #0074D9;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Style the link for showing more results */
+a {
+  color: #0074D9;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Hover effect for product items */
+.product:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s;
+}
