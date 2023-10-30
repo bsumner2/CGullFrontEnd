@@ -1,7 +1,7 @@
 <!doctype html>
 <html ng-app="CGullWebsite">
   <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="res/scripts/angular/angular.min.js"></script>
     <script src="res/scripts/app/frontpage.js"></script>
     <link rel="icon" href="res/img/logo.png">
     <link rel="stylesheet" href="res/stylesheets/cgullstyle.css">
@@ -12,10 +12,14 @@
       <span>Showing all {{frontPage.entryCt()}} results</span>
       [ <a href="" ng-click="frontPage.showListingsReplacement()">Show Results</a> ]
       <ul class="productlist">
-        <li class="product" ng-repeat="item in frontPage.listings">
+        <li class="product" ng-repeat="item in frontPage.listings | filter: (item.isBundle==true)">
+          <img ng-src="http://localhost:5041/Item/Image/{{item.id}}" ng-alt="{{item.name}}" width="128" height="128"/>
+          <b>{{item.name}}</b>
+          <b>Price:</b>	<s><font color="#4A4A4A">${{item.msrp}}</font></s>	<font color="#17992A">${{item.salePrice}}</font>
+          <b>Rating:</b>	{{item.rating}}/5
+          {{item.btnPressed}}
           <label>
-            <input class="list_item_btn" type="button" ng-click="frontPage.showItemDesc(item)" value="Toggle description">
-            Item: {{item.name}} ({{item.price}}) {{item.description}}
+            <input class="list_item_btn" type="button" ng-click="frontPage.showItemDesc(item)" value="View Item">
           </label>
         </li>
       </ul>

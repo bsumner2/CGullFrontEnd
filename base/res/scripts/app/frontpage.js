@@ -3,7 +3,8 @@ angular.module('CGullWebsite', [])
   // Add self and backend origin point to trusted list
   $sceDelegateProvider.trustedResourceUrlList([
     'self',
-    'http://localhost:5278/**'
+    'http://localhost:5041/**',
+    'https://localhost:7247/**',
   ]);
 }]).controller('FrontPageController', function($http) {
   var frontPage = this;
@@ -13,7 +14,7 @@ angular.module('CGullWebsite', [])
       : this.listings.length; 
   };
   frontPage.showListingsReplacement = function() {
-    $http.get('http://localhost:5278/Product/Item/All', {}).then(
+    $http.get('http://localhost:5041/Item/GetAllItems', {}).then(
         function success_callback(rsp) {
           frontPage.listings = [];
           for (i = 0; i < rsp.data.length; i++)
@@ -24,12 +25,8 @@ angular.module('CGullWebsite', [])
   };
   frontPage.showItemDesc = function(itm) {
     // quick and dirty toggle
-    if (itm.altdesc == null) {
-      itm.altdesc = itm.description;
-      itm.description = null;
-    } else {
-      itm.description = itm.altdesc;
-      itm.altdesc = null;
+    if (itm.btnPressed == null) {
+      itm.btnPressed = "Hello!"
     }
   };
 });
