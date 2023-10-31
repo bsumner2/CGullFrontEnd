@@ -1,0 +1,113 @@
+.item-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #F5F5F5;
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the header */
+header {
+
+  background-color: #0074D9;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 20px;
+
+}
+/*h2 {
+  background-color: #0074D9;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}*/
+
+
+
+.steven-cgull {
+  background-color: #0074D9;
+  float: right;
+  margin-left: 20px;
+}
+
+.steven-cgull img {
+  background-color: #0074D9;
+  max-width: 100px;
+  height: auto;
+}
+
+/* Small header displaying the item name */
+h4 {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+/* Split view for product image and item data */
+.item-details {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Product Image */
+.product-image {
+  flex: 1;
+  margin-right: 20px;
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Item Data */
+.item-info {
+  flex: 2;
+  font-size: 16px;
+  p {
+    margin: 5px 0;
+  }
+}
+
+/* Quantity Selector */
+.cart-ops {
+  margin: 20px 0;
+  label {
+    display: block;
+    font-weight: bold;
+  }
+  input[type="number"] {
+    width: 50px;
+    padding: 5px;
+  }
+}
+  /* Add to Cart Button */
+.cart-buttons {
+  background-color: #0074D9;
+  color: #fff;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+  /* Hover effect for the button */
+.cart-buttons:hover {
+  background-color: #005bbf;
+}
+
+.register-box {
+  background-color: #EAFFFF;
+  border-radius: 16px;
+  border: 8px solid #EAFFFF;
+  margin: 20px 0;
+  margin-left: 10px;
+}

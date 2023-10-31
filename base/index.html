@@ -1,25 +1,44 @@
-<!doctype html>
+<!DOCTYPE html>
 <html ng-app="CGullWebsite">
   <head>
     <script src="res/scripts/angular/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <script src="res/scripts/app/appdef.js"></script>
     <script src="res/scripts/app/frontpage.js"></script>
     <link rel="icon" href="res/img/logo.png">
     <link rel="stylesheet" href="res/stylesheets/cgullstyle.css">
   </head>
+  <header>
+    <h2>
+      <div class="steven-cgull">
+        <img src="res/img/steven-seagull.png" width="128" height="128"/>
+      </div>
+      CGulls' Seagull Themed Merchendise!
+    </h2>
+  </header>
   <body>
-    <h2>CGulls' Seagull Themed Merchendise!</h2>
     <div ng-controller="FrontPageController as frontPage">
+      <span>
+        <input style="margin-left: 16px; width: 75%;" type="text" ng-model="frontPage.searchText">
+      </span>
       <span>Showing all {{frontPage.entryCt()}} results</span>
-      [ <a href="" ng-click="frontPage.showListingsReplacement()">Show Results</a> ]
+      <input type="button" ng-click="frontPage.showListings()" value="Show Results">
       <ul class="productlist">
-        <li class="product" ng-repeat="item in frontPage.listings | filter: (item.isBundle==true)">
+        <li class="product" ng-repeat="item in frontPage.listings">
           <img ng-src="http://localhost:5041/Item/Image/{{item.id}}" ng-alt="{{item.name}}" width="128" height="128"/>
-          <b>{{item.name}}</b>
-          <b>Price:</b>	<s><font color="#4A4A4A">${{item.msrp}}</font></s>	<font color="#17992A">${{item.salePrice}}</font>
-          <b>Rating:</b>	{{item.rating}}/5
+          <br>
+          <span style = "margin-left: 8px">
+            <b>{{item.name}}</b>
+            <br>
+            <b>Price:</b>	<s><font color="#7A7A7A">${{item.msrp}}</font></s>	<font color="#17992A">${{item.salePrice}}</font>
+            <br>
+            <b>Rating:</b>	{{item.rating}}/5
+            <br>
+            <b>Category:</b> {{frontPage.categories[item.categoryId-1].name}}
+          </span>
           {{item.btnPressed}}
           <label>
-            <input class="list_item_btn" type="button" ng-click="frontPage.showItemDesc(item)" value="View Item">
+          <input class="list_item_btn" type="button" ng-click="frontPage.redirectToItemPage(item)" value="View Item">
           </label>
         </li>
       </ul>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="CGullWebsite">
+  <head>
+    <script src="res/scripts/angular/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
+    <script src="res/scripts/app/appdef.js"></script> <!-- Declares angular app module handle to global scope -->
+    <script src="res/scripts/app/item.js"></script>
+    <link rel="icon" href="res/img/logo.png">
+    <link rel="stylesheet" href="res/stylesheets/cgullitemstyle.css">
+  </head>
+  <header>
+    <h2>
+      <div class="steven-cgull">
+        <img src="res/img/steven-seagull.png" width="128" height="128"/>
+      </div>
+      CGulls' Seagull Themed Merchendise!
+    </h2>
+  </header>
+  <body ng-controller="ItemController as itemHandle">
+    <div class="item-page">
+      <h4>{{itemHandle.instance.name}}</h4>
+      <div class="item-details">
+        <div class="product-image">
+         <img ng-src="http://localhost:5041/Item/Image/{{itemHandle.id}}" 
+          ng-alt="{{itemHandle.instance.name}}" width="512" height="512"/>
+        </div>
+        <div class="item-info">
+          <p><b>Price:</b> <font color="#7A7A7A"><s>${{itemHandle.instance.msrp}}</s></font> <font color="#17992A">${{item.salePrice}}</font></p>
+          <p><b>Rating:</b> {{itemHandle.instance.rating}}/5.0</p>
+          <p><b>{{itemHandle.instance.stock > 0 ? "In Stock" : "Out of Stock"}}</b></p>
+          <div class="cart-ops">
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity", ng-model="itemHandle.selectedQty">
+            <input class="cart-buttons" type="button" ng-click="itemHandle.addToCart()" value="Add to Cart">
+            <div ng-if="itemHandle.rspErr">
+              <font color = "#FF0000"><b>{{itemHandle.addRsp}}</b></font>
+            </div>
+            <div ng-if="itemHandle.promptUsrReg" class="register-box">
+              Please register your Email first:
+              <hr>
+              <input type="text" ng-model="itemHandle.registerName" value="Your Email">
+              <input class="cart-buttons" type="button" ng-click="itemHandle.regCartAndAdd()" value="Register">
+              <div ng-if="invalidEmail"><font color="#FF0000"><b>Must enter a valid email!</b></font></div>
+            </div>
+            <div ng-if="!itemHandle.rspErr">{{itemHandle.addRsp}}</div>
+          </div>
+      </div>
+      <!-- <div ng-if="itemHandle.associatedBundles!=[]" class="promo-bundle">
+        <h5>Bundles Containing This Item</h5>
+        <ul>
+          <li ng-repeat="bundle in itemHandle.associatedBundles">
+            <>
+          </li>
+        </ul>
+        </div> (Uncomment after cycle issue with getting bundles with Include.(bundle=>bundle.BundleItems) resolved) -->
+    </div>
+  </body>
+</html>

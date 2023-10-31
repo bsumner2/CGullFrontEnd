@@ -2,18 +2,40 @@
 /* Style the overall page */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
+  background-color: #F5F5F5;
   margin: 0;
   padding: 0;
 }
 
 /* Style the header */
-h2 {
+header {
+
   background-color: #0074D9;
   color: #fff;
   text-align: center;
   padding: 20px;
+  margin-bottom: 20px;
 }
+/*h2 {
+  background-color: #0074D9;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}*/
+
+.steven-cgull {
+  background-color: #0074D9;
+  float: right;
+  margin-left: 20px;
+}
+
+.steven-cgull img {
+  background-color: #0074D9;
+  max-width: 100px;
+  height: auto;
+}
+
+
 
 /* Style the container for product listings */
 .productlist {
