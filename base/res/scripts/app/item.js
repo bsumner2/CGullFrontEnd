@@ -13,7 +13,7 @@ app.controller('ItemController', function($scope, $window, $http) {
   }
 
   itemHandle.instance = null;
-  $http.get('http://localhost:5041/Item/GetById?idList=' + itemHandle.id).then(
+  $http.get(API_ADDR + '/Item/GetById?idList=' + itemHandle.id).then(
     function successcb(rsp) {
       itemHandle.instance = rsp.data[0];
     }, function errorcb(rsp) {
@@ -36,7 +36,7 @@ app.controller('ItemController', function($scope, $window, $http) {
       $scope.invalidEmail=true;
       return;
     }
-    $http.post('http://localhost:5041/Cart/CreateNewCart?name='+name, "").then(
+    $http.post(API_ADDR + '/Cart/CreateNewCart?name='+name, "").then(
       function successcb(rsp) {
         localStorage.setItem('cart', rsp.data);
         console.log('New cart: ' + rsp.data);
@@ -62,7 +62,7 @@ app.controller('ItemController', function($scope, $window, $http) {
     }
 
     // else user already has cart
-    $http.post('http://localhost:5041/Item/AddItemToCart?cartId=' 
+    $http.post(API_ADDR + '/Item/AddItemToCart?cartId=' 
       + cartHandle + '&itemId=' + itemHandle.id + '&quantity='
       + itemHandle.selectedQty, "").
       then(function successcb(rsp) {
