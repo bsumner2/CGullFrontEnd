@@ -3,7 +3,8 @@ app.controller('FrontPageController', function($window, $http) {
   frontPage.listings = [];
   frontPage.categories = [];
   frontPage.searchText = "";
-  $http.get('http://localhost:5041/Item/Category').then(
+  frontPage.apiAddr = API_ADDR;
+  $http.get(API_ADDR + '/Item/Category').then(
     function successcb(rsp) {
       frontPage.categories = [];
       for (i=0; i < rsp.data.length; ++i)
@@ -20,7 +21,7 @@ app.controller('FrontPageController', function($window, $http) {
   frontPage.showListings = function() {
     if (frontPage.searchText != "") {
       let query = frontPage.searchText.replace(" ", "&");
-      $http.get('http://localhost:5041/Item/GetByKeyword?keyWordList='+query).then(
+      $http.get(API_ADDR + '/Item/GetByKeyword?keyWordList='+query).then(
         function successcb(rsp) {
           frontPage.listings = [];
           for (i = 0; i < rsp.data.length; ++i)
@@ -32,7 +33,7 @@ app.controller('FrontPageController', function($window, $http) {
       );
       return;
     }
-    $http.get('http://localhost:5041/Item/GetAllItems', {}).then(
+    $http.get(API_ADDR + '/Item/GetAllItems', {}).then(
       function successcb(rsp) {
         frontPage.listings = [];
         for (i = 0; i < rsp.data.length; i++)

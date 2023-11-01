@@ -7,7 +7,7 @@ app.controller('ItemController', function($scope, $window, $http) {
   itemHandle.addRsp = "";
   itemHandle.rspErr = false;
   itemHandle.registerName = "";
-
+  itemHandle.apiAddr = API_ADDR;
   if (itemHandle.id.length != 6 || itemHandle.id[0] != '0') {
     $window.location.href = "pagedne.html?type=item&additionalInfo=" + itemHandle.id;
   }

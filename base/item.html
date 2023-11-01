@@ -3,7 +3,7 @@
   <head>
     <script src="res/scripts/angular/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
-    <script src="res/scripts/app/appdef.js"></script> <!-- Declares angular app module handle to global scope -->
+    <script src="res/scripts/app/global_defs.js"></script> <!-- Declares angular app module handle to global scope -->
     <script src="res/scripts/app/item.js"></script>
     <link rel="icon" href="res/img/logo.png">
     <link rel="stylesheet" href="res/stylesheets/cgullitemstyle.css">
@@ -21,7 +21,7 @@
       <h4>{{itemHandle.instance.name}}</h4>
       <div class="item-details">
         <div class="product-image">
-         <img ng-src="http://localhost:5041/Item/Image/{{itemHandle.id}}" 
+          <img ng-src="{{itemHandle.apiAddr}}/Item/Image/{{itemHandle.id}}" 
           ng-alt="{{itemHandle.instance.name}}" width="512" height="512"/>
         </div>
         <div class="item-info">

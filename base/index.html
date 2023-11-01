@@ -3,7 +3,7 @@
   <head>
     <script src="res/scripts/angular/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
-    <script src="res/scripts/app/appdef.js"></script>
+    <script src="res/scripts/app/global_defs.js"></script>
     <script src="res/scripts/app/frontpage.js"></script>
     <link rel="icon" href="res/img/logo.png">
     <link rel="stylesheet" href="res/stylesheets/cgullstyle.css">
@@ -25,7 +25,7 @@
       <input type="button" ng-click="frontPage.showListings()" value="Show Results">
       <ul class="productlist">
         <li class="product" ng-repeat="item in frontPage.listings">
-          <img ng-src="http://localhost:5041/Item/Image/{{item.id}}" ng-alt="{{item.name}}" width="128" height="128"/>
+          <img ng-src="{{frontPage.apiAddr}}/Item/Image/{{item.id}}" ng-alt="{{item.name}}" width="128" height="128"/>
           <br>
           <span style = "margin-left: 8px">
             <b>{{item.name}}</b>
