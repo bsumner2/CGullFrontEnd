@@ -10,6 +10,3 @@ app.config(['$sceDelegateProvider', function($sceDelegateProvider) {
     'https://localhost:7247/**',
   ]);
 }]);
-
-
-

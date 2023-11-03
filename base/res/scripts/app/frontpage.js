@@ -20,8 +20,8 @@ app.controller('FrontPageController', function($window, $http) {
   };
   frontPage.showListings = function() {
     if (frontPage.searchText != "") {
-      let query = frontPage.searchText.replace(" ", "&");
-      $http.get(API_ADDR + '/Item/GetByKeyword?keyWordList='+query).then(
+      let queryUrl = API_ADDR + '/Item/GetByKeyword?keywordList=' + frontPage.searchText.replaceAll(" ", "%26");
+      $http.get(queryUrl).then(
         function successcb(rsp) {
           frontPage.listings = [];
           for (i = 0; i < rsp.data.length; ++i)

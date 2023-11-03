@@ -2,19 +2,18 @@
 <html ng-app="CGullWebsite">
   <head>
     <script src="res/scripts/angular/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
     <script src="res/scripts/app/global_defs.js"></script> <!-- Declares angular app module handle to global scope -->
     <script src="res/scripts/app/item.js"></script>
     <link rel="icon" href="res/img/logo.png">
     <link rel="stylesheet" href="res/stylesheets/cgullitemstyle.css">
   </head>
   <header>
-    <h2>
+    <h1>
+      CGulls' Seagull Themed Merchandise!
       <div class="steven-cgull">
-        <img src="res/img/steven-seagull.png" width="128" height="128"/>
+        <a href="index.html"><img src="res/img/steven-seagull.png" width="128" height="128"/></a>
       </div>
-      CGulls' Seagull Themed Merchendise!
-    </h2>
+    </h1>
   </header>
   <body ng-controller="ItemController as itemHandle">
     <div class="item-page">
@@ -25,7 +24,7 @@
           ng-alt="{{itemHandle.instance.name}}" width="512" height="512"/>
         </div>
         <div class="item-info">
-          <p><b>Price:</b> <font color="#7A7A7A"><s>${{itemHandle.instance.msrp}}</s></font> <font color="#17992A">${{item.salePrice}}</font></p>
+          <p><b>Price:</b> <element ng-if="0.01 <= (itemHandle.item.instance.msrp - itemHandle.item.instance.salePrice)"><font color="#7A7A7A"><s>${{itemHandle.instance.msrp}}</s></font> </element><font color="#17992A">${{itemHandle.instance.salePrice}}</font></p>
           <p><b>Rating:</b> {{itemHandle.instance.rating}}/5.0</p>
           <p><b>{{itemHandle.instance.stock > 0 ? "In Stock" : "Out of Stock"}}</b></p>
           <div class="cart-ops">

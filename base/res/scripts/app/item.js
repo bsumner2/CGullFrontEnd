@@ -9,7 +9,8 @@ app.controller('ItemController', function($scope, $window, $http) {
   itemHandle.registerName = "";
   itemHandle.apiAddr = API_ADDR;
   if (itemHandle.id.length != 6 || itemHandle.id[0] != '0') {
-    $window.location.href = "pagedne.html?type=item&additionalInfo=" + itemHandle.id;
+    $window.location.href = "item.html?id=000030";
+//    $window.location.href = "pagedne.html?type=item&additionalInfo=" + itemHandle.id;
   }
 
   itemHandle.instance = null;
@@ -19,7 +20,9 @@ app.controller('ItemController', function($scope, $window, $http) {
     }, function errorcb(rsp) {
       console.log('[Error]: Failed to request item by Id. Details:');
       console.log(rsp.data);
-      $window.location.href = "pagedne.html?type=item&additionalInfo=" + itemHandle.id;
+      $window.location.href = 
+          "item.html?id=000030";
+//      $window.location.href = "pagedne.html?type=item&additionalInfo=" + itemHandle.id;
     }
 
   );
@@ -74,13 +77,7 @@ app.controller('ItemController', function($scope, $window, $http) {
         itemHandle.rspErr = true;
       }
     );
-
-
-
   };
-
-
-
 
 });
 
