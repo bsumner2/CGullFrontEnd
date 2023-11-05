@@ -2,7 +2,7 @@ app.controller('ItemController', function($scope, $window, $http) {
   var itemHandle = this;
   $scope.invalidEmail=false;
   itemHandle.id = location.search.substring(4, 10);
-  itemHandle.selectedQty = 0;
+  itemHandle.selectedQty = 1;
   itemHandle.promptUsrReg = false;
   itemHandle.addRsp = "";
   itemHandle.rspErr = false;
@@ -26,6 +26,12 @@ app.controller('ItemController', function($scope, $window, $http) {
     }
 
   );
+
+  itemHandle.checkQtyValid = function() {
+    itemHandle.selectedQty = (itemHandle.selectedQty < 0) ? 0 
+        : ((itemHandle.selectedQty > itemHandle.instance.stock)
+            ? itemHandle.instance.stock : itemHandle.selectedQty);
+  }
   
   itemHandle.regCartAndAdd = function() {
     $scope.invalidEmail = false;
@@ -33,12 +39,32 @@ app.controller('ItemController', function($scope, $window, $http) {
       $scope.invalidEmail = true;
       return;
     }
+
+    // Regex to parse email. Matches <email_handle> in strings formatted as
+    // <email_handle>@<domain>, where <domain> is any number of alphabeticals-only
+    // substrings delimited by periods and ending in any alphabeticals-only
+    // substring after last period.
+    // e.g: 
+    //   Matches:
+    //     user22 from user22@gmail.com burt from burt@email.uni.edu
+    //   Won't Match:
+    //     u$er@gma!1.c0m user@@gmail.com, etc.
     let name = 
-      itemHandle.registerName.match(/[A-Za-z0-9]+(?=@[[A-Za-z]+\.[mcon][aore][imgt][l]*)/);
+      itemHandle.registerName.matchAll(
+        /[A-Za-z0-9]+(?=@([[A-Za-z]+\.)+([a-z]+){1})/);
+//      itemHandle.registerName.match(/[A-Za-z0-9]+(?=@[[A-Za-z]+\.[mcon][aore][imgt][l]*)/);
+    if (name.length != 1) {
+      $scope.invalidEmail=true;
+    }
     if (name == null) {
       $scope.invalidEmail=true;
       return;
     }
+    if (!itemHandle.registerName.startsWith(name[0])) {
+      $scope.invalidEmail=true;
+      return;
+    }
+      
     $http.post(API_ADDR + '/Cart/CreateNewCart?name='+name, "").then(
       function successcb(rsp) {
         localStorage.setItem('cart', rsp.data);

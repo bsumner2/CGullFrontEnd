@@ -1,4 +1,4 @@
-let app = angular.module('CGullWebsite', ['ngRoute']);
+let app = angular.module('CGullWebsite', []);
 
 const API_ADDR= "http://localhost:5041";
 

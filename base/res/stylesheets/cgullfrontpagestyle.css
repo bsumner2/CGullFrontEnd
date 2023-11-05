@@ -1,0 +1,40 @@
+
+
+/* Style the container for product listings */
+.productlist {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/* Style individual product items */
+.product {
+  width: 30%; /* Adjust this value to control the width of each item */
+  margin: 10px;
+  background-color: #FFF;
+  border: 1px solid #DDD;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 0 5px #0000001A;
+}
+
+/* Style the description button */
+.list_item_btn {
+  border: none;
+  padding: 5px 10px;
+}
+
+/* Style the link for showing more results */
+a {
+  color: #0074D9;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Hover effect for product items */
+.product:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s;
+}
