@@ -9,30 +9,9 @@ body {
 
 /* Style the header */
 header {
-  minimum-height: auto;
-  display: flex;
   background-color: #0074D9;
   color: #fff;
-  justify-content: center;
-  padding: 20px;
   margin-bottom: 20px;
-}
-
-h1 {
-  background-color: #0074D9;
-  text-align: center;
-}
-
-.steven-cgull {
-  background-color: #0074D9;
-  float: right;
-  margin-left: 20px;
-}
-
-.steven-cgull img {
-  background-color: #0074D9;
-  max-width: 100px;
-  height: auto;
 }
 
 /* Style the container for product listings */
