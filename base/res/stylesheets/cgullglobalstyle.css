@@ -15,23 +15,6 @@ header {
   margin-bottom: 20px;
 }
 
-h1 {
-  background-color: #0074D9;
-  text-align: center;
-}
-
-.sir-feathersworth {
-  background-color: #0074D9;
-  float: right;
-  margin-left: 20px;
-}
-
-.sir-feathersworth img {
-  background-color: #0074D9;
-  max-width: 100px;
-  height: auto;
-}
-
 input[type="button"] {
   background-color: #0074D9;
   color: #FFF;
