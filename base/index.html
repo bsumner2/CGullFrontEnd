@@ -5,7 +5,8 @@
     <script src="res/scripts/app/global_defs.js"></script>
     <script src="res/scripts/app/frontpage.js"></script>
     <link rel="icon" href="res/img/logo.png">
-    <link rel="stylesheet" href="res/stylesheets/cgullstyle.css">
+    <link rel="stylesheet" href="res/stylesheets/cgullglobalstyle.css">
+    <link rel="stylesheet" href="res/stylesheets/cgullfrontpagestyle.css">
   </head>
   <header>
 
@@ -19,13 +20,13 @@
           </td>
           <td style="width: 25%;">
             <a href="index.html">
-              <img src="res/img/steven-seagull.png" width="96" height="96">
+              <img src="res/img/sir-feathersworth.png" width="96" height="96">
             </a>
           </td>
         </tr>
       </table>
     </div>
-    
+
   </header>
   <body>
     <div ng-controller="FrontPageController as frontPage">
@@ -41,21 +42,12 @@
           <span style = "margin-left: 8px">
             <b>{{item.name}}</b>
             <br>
-            <!-- <div ng-if="0.01 <= (item.msrp - item.salePrice)">
-              <b>Price:</b>	<s><font color="#7A7A7A">${{item.msrp}}</font></s>	<font color="#17992A">${{item.salePrice}}</font>
-            </div>
-            <div ng-if="0.01 > (item.msrp - item.salePrice)">
-              <b>Price:</b> <font color="#17992A">${{item.salePrice}}</font>
-            </div> -->
-
-
             <b>Price:</b>	<element ng-if="0.01 <= (item.msrp - item.salePrice)"><s><font color="#7A7A7A">${{item.msrp}}</font></s>	</element><font color="#17992A">${{item.salePrice}}</font>
             <br>
             <b>Rating:</b>	{{item.rating}}/5
             <br>
             <b>Category:</b> {{frontPage.categories[item.categoryId-1].name}}
           </span>
-          {{item.btnPressed}}
           <label>
           <input class="list_item_btn" type="button" ng-click="frontPage.redirectToItemPage(item)" value="View Item">
           </label>

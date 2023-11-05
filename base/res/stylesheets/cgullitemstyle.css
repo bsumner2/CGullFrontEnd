@@ -2,8 +2,8 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background-color: #FFF;
+  box-shadow: 0 0 5px #0000001A;
 }
 
 body {
@@ -11,13 +11,6 @@ body {
   background-color: #F5F5F5;
   margin: 0;
   padding: 0;
-}
-
-/* Style the header */
-header {
-  background-color: #0074D9;
-  color: #fff;
-  margin-bottom: 20px;
 }
 
 /* Small header displaying the item name */
@@ -65,19 +58,15 @@ h4 {
 }
   /* Add to Cart Button */
 .cart-buttons {
-  background-color: #0074D9;
-  color: #fff;
-  border: none;
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 10px 20px;
   font-size: 16px;
-  cursor: pointer;
 }
 
   /* Hover effect for the button */
 .cart-buttons:hover {
-  background-color: #005bbf;
+  background-color: #005BBF;
 }
 
 .register-box {

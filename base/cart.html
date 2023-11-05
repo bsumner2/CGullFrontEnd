@@ -3,12 +3,14 @@
   <head>
     <script src="res/scripts/angular/angular.min.js"></script>
     <script src="res/scripts/app/global_defs.js"></script>
-    <script src="res/scripts/app/frontpage.js"></script>
+    <script src="res/scripts/app/cart.js"></script>
     <link rel="icon" href="res/img/logo.png">
-    <link rel="stylesheet" href="res/stylesheets/cgullstyle.css">
+    <link rel="stylesheet" href="res/stylesheets/cgullglobalstyle.css">
+    <link rel="stylesheet" href="res/stylesheets/cgullcartstyle.css">
+    <!--<link rel="stylesheet" href="res/stylesheets/cgullcartstyle.css">-->
   </head>
   <header>
-    
+
     <!-- Title and Logo -->
     <div name="title-bar">
       <table style="margin:auto;">
@@ -19,7 +21,7 @@
           </td>
           <td style="width: 25%;">
             <a href="index.html">
-              <img src="res/img/steven-seagull.png" width="96" height="96">
+              <img src="res/img/sir-feathersworth.png" width="96" height="96">
             </a>
           </td>
         </tr>
@@ -28,8 +30,29 @@
 
   </header>
   <body>
-    <div ng-controller="CartController as cartHndl">
-
+    <div ng-controller="CartController as crtHndl">
+      <div class="cart-view">
+        <h3>Current Cart: {{crtHndl.name}}</h3>
+        <div class="cart-contents">
+          <h4>Contents: {{crtHndl.getItemCt()}} Items</h4>
+          <br>
+          <ul>
+            <li class="item-entry" ng-repeat="itmCtx in crtHndl.getEntries()">
+              <div class="cart-item-thumbnail">
+                <img ng-src="{{crtHndl.apiAddr}}/Item/Image/{{itmCtx.product.id}}"/>
+              </div>
+              <div class="cart-item-details">
+                <h4>{{itmCtx.product.name}}</h4>
+                <b>Price: </b><element ng-if="0.01 <= (itmCtx.product.msrp - itmCtx.product.salePrice)"><font color="#7A7A7A"><s>${{itmCtx.product.msrp}}</s></font> </element><font color="#17992A">${{itmCtx.product.salePrice}}</font>
+                <br>
+                <b>Amount: </b>{{itmCtx.quantity}}
+                <br>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </body>
 </html>
+
+
