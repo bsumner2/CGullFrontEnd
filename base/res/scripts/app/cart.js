@@ -56,10 +56,4 @@ app.controller('CartController', function($window, $http) {
     }
     return crtHndl.itemCt;
   }
-
-  
-  
-
-  
-
 });
