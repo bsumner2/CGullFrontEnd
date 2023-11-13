@@ -13,4 +13,3 @@ app.config(['$sceDelegateProvider', function($sceDelegateProvider) {
 }]);
 
 // const API_ADDR= "https://cgulls.ddns.net:5911";
-const API_ADDR= "https://cgulls.ddns.net:5911";

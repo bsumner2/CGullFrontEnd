@@ -7,6 +7,11 @@ app.controller('ItemController', function($scope, $window, $http) {
   itemHandle.addRsp = "";
   itemHandle.rspErr = false;
   itemHandle.registerName = "";
+
+  itemHandle.associatedBundles = [];
+  
+    
+    
   itemHandle.apiAddr = API_ADDR;
   if (itemHandle.id.length != 6 || itemHandle.id[0] != '0') {
     $window.location.href = "item.html?id=000030";
@@ -25,6 +30,14 @@ app.controller('ItemController', function($scope, $window, $http) {
 //      $window.location.href = "pagedne.html?type=item&additionalInfo=" + itemHandle.id;
     }
 
+  );
+
+  $http.get(API_ADDR + '/Item/GetAssociatedBundles/' + itemHandle.id).then(
+    function(rsp) {
+      itemHandle.associatedBundles = rsp.data;
+
+    }, function(err) {
+    }
   );
 
   itemHandle.checkQtyValid = function() {
@@ -55,6 +68,7 @@ app.controller('ItemController', function($scope, $window, $http) {
 //      itemHandle.registerName.match(/[A-Za-z0-9]+(?=@[[A-Za-z]+\.[mcon][aore][imgt][l]*)/);
     if (name.length != 1) {
       $scope.invalidEmail=true;
+      return;
     }
     if (name == null) {
       $scope.invalidEmail=true;
@@ -65,7 +79,7 @@ app.controller('ItemController', function($scope, $window, $http) {
       return;
     }
       
-    $http.post(API_ADDR + '/Cart/CreateNewCart?name='+name, "").then(
+    $http.post(API_ADDR + '/Cart/CreateNewCart?name='+name[0], "").then(
       function successcb(rsp) {
         localStorage.setItem('cart', rsp.data);
         console.log('New cart: ' + rsp.data);
@@ -76,9 +90,6 @@ app.controller('ItemController', function($scope, $window, $http) {
         itemHandle.addRsp = rsp.data;
       }
     );
-
-    
-
   };
 
   itemHandle.addToCart = function() {
@@ -89,6 +100,7 @@ app.controller('ItemController', function($scope, $window, $http) {
       itemHandle.promptUsrReg = true;
       return;
     }
+
 
     // else user already has cart
     $http.post(API_ADDR + '/Item/AddItemToCart?cartId=' 
@@ -104,6 +116,8 @@ app.controller('ItemController', function($scope, $window, $http) {
       }
     );
   };
+
+
 
 });
 

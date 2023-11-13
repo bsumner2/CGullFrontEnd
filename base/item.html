@@ -56,15 +56,16 @@
             </div>
             <div ng-if="!itemHandle.rspErr">{{itemHandle.addRsp}}</div>
           </div>
+        </div>
       </div>
-      <!-- <div ng-if="itemHandle.associatedBundles!=[]" class="promo-bundle">
+      <div ng-if="itemHandle.associatedBundles!=[]" class="promo-bundle">
         <h5>Bundles Containing This Item</h5>
         <ul>
           <li ng-repeat="bundle in itemHandle.associatedBundles">
-            <>
+            
           </li>
         </ul>
-        </div> (Uncomment after cycle issue with getting bundles with Include.(bundle=>bundle.BundleItems) resolved) -->
+      </div> <!-- Re-comment if cycle issue with getting bundles with Include.(bundle=>bundle.BundleItems) re-emerges) -->
     </div>
   </body>
 </html>
