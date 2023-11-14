@@ -21,7 +21,5 @@ fi
 rm base/res/scripts/app/global_defs.js
 mv base/res/scripts/app/global_defs.tmp base/res/scripts/app/global_defs.js
 
-
-cat base/res/scripts/app/global_defs.js
-#cd base
-#python -m http.server 8000 && cd ..
+cd base
+python -m http.server 8000 && cd ..
