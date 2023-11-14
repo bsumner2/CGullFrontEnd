@@ -1,8 +1,5 @@
 let app = angular.module('CGullWebsite', []);
 
-// const API_ADDR= "http://localhost:5041";
-
-
 app.config(['$sceDelegateProvider', function($sceDelegateProvider) {
   // Add self and backend origin point to trusted list
   $sceDelegateProvider.trustedResourceUrlList([
@@ -12,5 +9,4 @@ app.config(['$sceDelegateProvider', function($sceDelegateProvider) {
   ]);
 }]);
 
-// const API_ADDR= "https://cgulls.ddns.net:5911";
 const API_ADDR= "https://localhost:7247";
