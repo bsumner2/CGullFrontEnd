@@ -62,9 +62,12 @@ app.controller('ItemController', function($scope, $window, $http) {
     //     user22 from user22@gmail.com burt from burt@email.uni.edu
     //   Won't Match:
     //     u$er@gma!1.c0m user@@gmail.com, etc.
-    let name = 
-      itemHandle.registerName.matchAll(
-        /[A-Za-z0-9]+(?=@([[A-Za-z]+\.)+([a-z]+){1})/);
+//    let name = 
+//      itemHandle.registerName.match(
+//        /[A-Za-z0-9]/);
+// /[A-Za-z0-9]+(?=@([A-Za-z]+\.+([a-z]+)/);
+    
+
 //      itemHandle.registerName.match(/[A-Za-z0-9]+(?=@[[A-Za-z]+\.[mcon][aore][imgt][l]*)/);
     if (name.length != 1) {
       $scope.invalidEmail=true;
@@ -100,7 +103,6 @@ app.controller('ItemController', function($scope, $window, $http) {
       itemHandle.promptUsrReg = true;
       return;
     }
-
 
     // else user already has cart
     $http.post(API_ADDR + '/Item/AddItemToCart?cartId=' 
