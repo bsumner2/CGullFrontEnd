@@ -12,16 +12,45 @@
 
     <!-- Title and Logo -->
     <div name="title-bar">
-      <table style="margin:auto;">
+      <table style="margin:auto; width: 100%;">
         <tr>
-          <td style="width: 25%;"></td>
-          <td style="text-align:center; width: 50%;">
-            <h1>CGulls' Seagull Themed Merchandise</h1>
-          </td>
+          <!-- Logo -->
           <td style="width: 25%;">
-            <a href="index.html">
-              <img src="res/img/sir-feathersworth.png" width="96" height="96">
+            <a href="index.html" style="float:left;">
+              <img src="res/img/sir-feathersworth.png" width="48" height="48">
             </a>
+            <div style="padding: 2vh 0;">
+              <a href="index.html" style="color:white; font-size: 20px;"><u>CGullShop</u></a>
+            </div>
+          </td>
+
+          <!-- Search Bar -->
+          <td style="width: 50%;">
+            <div style="display: flex; height: 4vh;">
+              <div>
+                <select style="border: 2px solid #006dcc; border-right: none; 
+                border-radius: 10px 0px 0px 10px; padding: 1vh 0; padding-left: 10px;
+                cursor: pointer; background-color: #005dad; color: white;">
+                  <option>Category 1</option>
+                  <option>Category 2</option>
+                  <option>Category 3</option>
+                  <option>...</option>
+                </select>
+              </div>
+              <div style="flex: 1;">
+                <input style="width: 100%; border: 2px solid #006dcc; border-radius: 0px 10px 10px 0px; padding: 1vh 0; padding-left: 5px;" 
+                  placeholder="Search the CGull Store..."/>
+              </div>
+            </div>
+          </td>
+
+          <!-- Cart Button -->
+          <td style="width: 25%;">
+            <button style="float: right; margin-right: 2vw;
+            background-color: #0074D9; color: white; 
+            border: none; cursor: pointer; font-size: 20px;">
+            <u>Cart</u>
+          </button>
           </td>
         </tr>
       </table>
@@ -30,9 +59,9 @@
   </header>
   <body>
     <div ng-controller="FrontPageController as frontPage">
-      <span>
+      <!-- <span>
         <input style="margin-left: 16px; width: 75%;" type="text" ng-model="frontPage.searchText">
-      </span>
+      </span> -->
       <span>Showing all {{frontPage.entryCt()}} results</span>
       <input type="button" ng-click="frontPage.showListings()" value="Show Results">
       <ul class="productlist">
