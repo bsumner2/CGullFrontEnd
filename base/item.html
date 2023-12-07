@@ -37,32 +37,42 @@
           ng-alt="{{itemHandle.instance.name}}" width="512" height="512"/>
         </div>
         <div class="item-info">
-          <p><b>Price:</b> <element ng-if="0.01 <= (itemHandle.instance.msrp - itemHandle.instance.salePrice)"><font color="#7A7A7A"><s>${{itemHandle.instance.msrp}}</s></font> </element><font color="#17992A">${{itemHandle.instance.salePrice}}</font></p>
+          <p><b>Price:</b> <element ng-if="itemHandle.instance.onSale"><s>${{itemHandle.instance.msrp}}</s></font> </element><font color="#17992A">${{itemHandle.instance.onSale ? itemHandle.instance.salePrice : itemHandle.instance.msrp}}</font></p>
           <p><b>Rating:</b> {{itemHandle.instance.rating}}/5.0</p>
           <p><b>{{itemHandle.instance.stock > 0 ? "In Stock" : "Out of Stock"}}</b></p>
           <div class="cart-ops">
             <label for="quantity">Quantity</label>
             <input type="number" id="quantity", min="0" ng-change="itemHandle.checkQtyValid()" ng-model="itemHandle.selectedQty">
-            <input class="cart-buttons" type="button" ng-click="itemHandle.addToCart()" value="Add to Cart">
+            <input class="cart-buttons" type="button" ng-click="itemHandle.addToCart(itemHandle.id)" value="Add to Cart">
             <div ng-if="itemHandle.rspErr">
               <font color = "#FF0000"><b>{{itemHandle.addRsp}}</b></font>
             </div>
             <div ng-if="itemHandle.promptUsrReg" class="register-box">
               Please register your Email first:
               <hr>
-              <input type="text" ng-model="itemHandle.registerName" value="Your Email">
+              <input type="text" ng-model="itemHandle.registerName" placeholder="Name for cart">
               <input class="cart-buttons" type="button" ng-click="itemHandle.regCartAndAdd()" value="Register">
-              <div ng-if="invalidEmail"><font color="#FF0000"><b>Must enter a valid email!</b></font></div>
+              <div ng-if="invalidEmail"><font color="#FF0000"><b>Must enter a name for the cart!</b></font></div>
             </div>
             <div ng-if="!itemHandle.rspErr">{{itemHandle.addRsp}}</div>
           </div>
         </div>
       </div>
-      <div ng-if="itemHandle.associatedBundles!=[]" class="promo-bundle">
-        <h5>Bundles Containing This Item</h5>
+      <div ng-if="itemHandle.associatedBundles.length > 0" class="promo-bundle">
+        <h5>Bundle Containing This Item</h5>
         <ul>
-          <li ng-repeat="bundle in itemHandle.associatedBundles">
-            
+          <li ng-repeat="bundle in itemHandle.getBundles()">
+            <div class="items-in_bndl">
+              {{bundle.Details.name}} <font color="#17992A">${{bundle.Details.onSale ? bundle.Details.salePrice : bundle.Details.msrp}}</font>
+              <input type="button" ng-click="itemHandle.addToCart(bundle.Details.id)" value="Add To Cart">
+              <ul>
+                <li ng-repeat="item in bundle.BundleItems">
+                  <img ng-src="{{itemHandle.apiAddr}}/Item/Image/{{item.id}}"
+                  ng-alt="{{item.name}}" width="64" height="64"/><br>
+                  {{item.name}} <font color="#ED2929"><s>${{item.onSale ? item.salePrice : item.msrp}}</s></font>
+                </li>
+              </ul>
+            </div>
           </li>
         </ul>
       </div> <!-- Re-comment if cycle issue with getting bundles with Include.(bundle=>bundle.BundleItems) re-emerges) -->

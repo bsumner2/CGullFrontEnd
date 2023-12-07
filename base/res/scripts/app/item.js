@@ -1,7 +1,8 @@
-app.controller('ItemController', function($scope, $window, $http) {
+app.controller('AdminItemController', function($scope, $window, $http) {
   var itemHandle = this;
   $scope.invalidEmail=false;
   itemHandle.id = location.search.substring(4, 10);
+  $scope.cartTarget = itemHandle.id;
   itemHandle.selectedQty = 1;
   itemHandle.promptUsrReg = false;
   itemHandle.addRsp = "";
@@ -9,8 +10,7 @@ app.controller('ItemController', function($scope, $window, $http) {
   itemHandle.registerName = "";
 
   itemHandle.associatedBundles = [];
-  
-    
+  itemHandle.bundleDTOList = []; 
     
   itemHandle.apiAddr = API_ADDR;
   if (itemHandle.id.length != 6 || itemHandle.id[0] != '0') {
@@ -32,13 +32,42 @@ app.controller('ItemController', function($scope, $window, $http) {
 
   );
 
-  $http.get(API_ADDR + '/Item/GetAssociatedBundles/' + itemHandle.id).then(
+  $http.get(API_ADDR + '/Item/GetAssociatedBundles?id=' + itemHandle.id).then(
     function(rsp) {
       itemHandle.associatedBundles = rsp.data;
-
     }, function(err) {
     }
   );
+
+  itemHandle.getBundles = function() {
+    if (itemHandle.bundleDTOList.length != 0) {
+      return itemHandle.bundleDTOList;
+    }
+    itemHandle.bundleDTOList = [];
+    for (i=0; i < itemHandle.associatedBundles.length; ++i) {
+      let curr = {
+        Details: null,
+        BundleItems: []
+      };
+      $http.get(API_ADDR + '/Item/GetById?idList='+ itemHandle.associatedBundles[i].itemId).then(
+        (srsp) => {
+          curr.Details = srsp.data[0];
+          console.log(srsp);
+
+        }, (ersp) => {console.log(ersp);}
+      );
+      $http.get(API_ADDR + '/Item/GetBundleItems?bundleId=' + itemHandle.associatedBundles[i].itemId).then(
+        (srsp) => {
+          curr.BundleItems = srsp.data;
+        }, (ersp) => {
+          console.log(ersp);
+        }
+      );
+      itemHandle.bundleDTOList.push(curr);
+    }
+    return itemHandle.bundleDTOList;
+    
+  }
 
   itemHandle.checkQtyValid = function() {
     itemHandle.selectedQty = (itemHandle.selectedQty < 0) ? 0 
@@ -51,38 +80,8 @@ app.controller('ItemController', function($scope, $window, $http) {
     if (itemHandle.registerName == "") {
       $scope.invalidEmail = true;
       return;
-    }
-
-    // Regex to parse email. Matches <email_handle> in strings formatted as
-    // <email_handle>@<domain>, where <domain> is any number of alphabeticals-only
-    // substrings delimited by periods and ending in any alphabeticals-only
-    // substring after last period.
-    // e.g: 
-    //   Matches:
-    //     user22 from user22@gmail.com burt from burt@email.uni.edu
-    //   Won't Match:
-    //     u$er@gma!1.c0m user@@gmail.com, etc.
-//    let name = 
-//      itemHandle.registerName.match(
-//        /[A-Za-z0-9]/);
-// /[A-Za-z0-9]+(?=@([A-Za-z]+\.+([a-z]+)/);
-    
-
-//      itemHandle.registerName.match(/[A-Za-z0-9]+(?=@[[A-Za-z]+\.[mcon][aore][imgt][l]*)/);
-    if (name.length != 1) {
-      $scope.invalidEmail=true;
-      return;
-    }
-    if (name == null) {
-      $scope.invalidEmail=true;
-      return;
-    }
-    if (!itemHandle.registerName.startsWith(name[0])) {
-      $scope.invalidEmail=true;
-      return;
-    }
-      
-    $http.post(API_ADDR + '/Cart/CreateNewCart?name='+name[0], "").then(
+    }      
+    $http.post(API_ADDR + '/Cart/CreateNewCart?name='+itemHandle.registerName[0], "").then(
       function successcb(rsp) {
         localStorage.setItem('cart', rsp.data);
         console.log('New cart: ' + rsp.data);
@@ -95,9 +94,10 @@ app.controller('ItemController', function($scope, $window, $http) {
     );
   };
 
-  itemHandle.addToCart = function() {
+  itemHandle.addToCart = function(id) {
     itemHandle.addRsp="";
     itemHandle.rspErr = false;
+    $scope.cartTarget = id;
     var cartHandle = localStorage.getItem('cart');
     if (cartHandle == null) {
       itemHandle.promptUsrReg = true;
@@ -106,8 +106,8 @@ app.controller('ItemController', function($scope, $window, $http) {
 
     // else user already has cart
     $http.post(API_ADDR + '/Item/AddItemToCart?cartId=' 
-      + cartHandle + '&itemId=' + itemHandle.id + '&quantity='
-      + itemHandle.selectedQty, "").
+      + cartHandle + '&itemId=' + $scope.cartTarget + '&quantity='
+      + (itemHandle.id == $scope.cartTarget ? itemHandle.selectedQty : 1), "").
       then(function successcb(rsp) {
         itemHandle.addRsp = rsp.data;
         console.log(rsp.data);

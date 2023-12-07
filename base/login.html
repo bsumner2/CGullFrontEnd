@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="CGullWebsite">
+<head>
+  <script src="res/scripts/angular/angular.min.js"></script>
+  <script src="res/scripts/app/global_defs.js"></script>
+  <script src="res/scripts/app/adminlogin.js"></script>
+  <link rel="icon" href="res/img/logo.png">
+  <link rel="stylesheet" href="res/stylesheets/cgullglobalstyle.css">
+  <link rel="stylesheet" href="res/stylesheets/cgulladminloginstyle.css">
+</head>
+<body>
+  <div class="admin-login-container">
+    <h1>Admin Login</h1>
+    <form ng-controller="AdminLoginController as adminCtl">
+      <label for="username">Username:</label>
+      <input type="text" id="username" ng-model="adminCtl.username" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" ng-model="adminCtl.password" required>
+      <div ng-if="logErr" class="admin-login-container">
+        Login failed: {{failMsg}}
+      </div>
+      <button type="button" ng-click="adminCtl.login()">Login</button>
+    </form>
+  </div>
+</body>
+</html>

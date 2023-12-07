@@ -3,7 +3,7 @@
   <head>
     <script src="res/scripts/angular/angular.min.js"></script>
     <script src="res/scripts/app/global_defs.js"></script>
-    <script src="res/scripts/app/frontpage.js"></script>
+    <script src="res/scripts/app/adminfp.js"></script>
     <link rel="icon" href="res/img/logo.png">
     <link rel="stylesheet" href="res/stylesheets/cgullglobalstyle.css">
     <link rel="stylesheet" href="res/stylesheets/cgullfrontpagestyle.css">
@@ -22,7 +22,7 @@
               </a>
             </div>
             <div class="storename">
-              <a href="index.html" style="color:white; font-size: 20px;"><u>CGullShop</u></a>
+              <a href="admin.html" style="color:white; font-size: 20px;"><u>CGulls Admin Portal</u></a>
             </div>
           </td>
 
@@ -41,10 +41,10 @@
             </div>
           </td>
 
-          <!-- Cart Button -->
+          <!-- Logout Button -->
           <td class="cart_section">
-            <button onclick="vanillaRedir('cart.html')">
-              <u>Cart</u>
+            <button onclick="vanillaRedir('index.html')">
+              <u>Logout</u>
             </button>
           </td>
         </tr>
@@ -53,7 +53,7 @@
 
   </header>
   <body>
-    <div ng-controller="FrontPageController as frontPage">
+    <div ng-controller="AdminFrontPageController as frontPage">
       <!-- <span>
         <input style="margin-left: 16px; width: 75%;" type="text" ng-model="frontPage.searchText">
       </span> -->
@@ -73,7 +73,7 @@
             <b>Category:</b> {{categories[item.categoryId-1].Name}}
           </span>
           <label>
-          <input class="list_item_btn" type="button" ng-click="frontPage.redirectToItemPage(item)" value="View Item">
+          <input class="list_item_btn" type="button" ng-click="frontPage.redirectToItemEditorPage(item)" value="Edit Item">
           </label>
         </li>
       </ul>

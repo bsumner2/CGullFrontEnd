@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="CGullWebsite">
+<head>
+  <script src="res/scripts/angular/angular.min.js"></script>
+  <script src="res/scripts/app/global_defs.js"></script>
+  <script src="res/scripts/app/admin_itm.js"></script>
+  <link rel="icon" href="res/img/logo.png">
+  <link rel="stylesheet" href="res/stylesheets/cgullglobalstyle.css">
+  <link rel="stylesheet" href="res/stylesheets/adminitemstyle.css">
+</head>
+<body ng-controller="AdminItemController as adminItemHandle">
+  <div class="admin-item-page">
+    <h4>{{adminItemHandle.instance.name}} - Admin View</h4>
+    <div class="admin-item-details">
+      <div class="admin-product-image">
+        <img ng-src="{{adminItemHandle.apiAddr}}/Item/Image/{{adminItemHandle.id}}"
+        ng-alt="{{adminItemHandle.instance.name}}" width="512" height="512"/>
+      </div>
+      <div class="admin-item-info">
+        <p><b>Price:</b> <input type="number" ng-model="adminItemHandle.instance.msrp" ng-change="validatePrice()"></p>
+        <p><b>Stock:</b> <input type="number" ng-model="adminItemHandle.instance.stock" ng-change="validateStock()"></p>
+        <p><b>On Sale:</b> <input type="checkbox" ng-model="adminItemHandle.instance.onSale"></p>
+        <p><b>Rating:</b> {{adminItemHandle.instance.rating}}/5.0</p>
+        <div class="admin-cart-ops">
+          <label for="quantity">Quantity</label>
+          <button ng-click="adminItemHandle.editItem()">Edit Item</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

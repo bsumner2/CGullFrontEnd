@@ -76,3 +76,48 @@ h4 {
   margin: 20px 0;
   margin-left: 10px;
 }
+
+.promo-bundle {
+  flex: 1;
+  /*  justify-self: center; */
+  margin-top: auto;
+  margin-bottom: 10px;
+  padding-inline: 10px;
+  padding-top: 2px;
+  padding-bottom: 8px;
+  background-color: #F9F9F9;
+  box-shadow: 0 0 5px #758888;
+  border-radius: 10px;
+  ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+}
+
+.items-in_bndl {
+  flex: 1;
+  /*  justify-self: center; */
+  margin-top: auto;
+  padding-inline: inherit;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  background-color: #EDF7FD;
+  box-shadow: 0 0 5px #758888;
+  border-radius: 10px;
+  ul {
+    list-style-type: none;
+    padding: 10px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    margin: 10px;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    li {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+}

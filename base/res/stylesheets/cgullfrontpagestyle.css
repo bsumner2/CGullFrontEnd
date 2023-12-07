@@ -1,3 +1,67 @@
+.title-bar {
+  table {
+    margin: auto;
+    width: 100%;
+  }
+}
+
+.logo: {
+  width: 25%;
+}
+
+.mascot {
+  float: left;
+}
+
+.storename {
+  padding: 2vh 0;
+}
+
+.searchbar {
+  width: 50%;
+}
+
+.searchbarcontents {
+  display: flex;
+  height: 4vh;
+}
+
+.cart_section {
+  width: 25%;
+  button {
+    float: right; 
+    margin-right: 2vw;
+    background-color: #0074D9;
+    color: white; 
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+  }
+}
+
+.filter_sel {
+  select {
+    border: 2px solid #006dcc;
+    border-right: none; 
+    border-radius: 10px 0px 0px 10px;
+    padding: 1vh 0;
+    padding-left: 10px;
+    cursor: pointer;
+    background-color: #005dad;
+    color: white;
+  }
+}
+
+.searchfield {
+  flex: 1;
+  input {
+    width: 100%;
+    border: 2px solid #006dcc;
+    border-radius: 0px 10px 10px 0px;
+    padding: 1vh 0; 
+    padding-left: 5px; 
+  }
+}
 
 
 /* Style the container for product listings */
@@ -38,3 +102,7 @@ a {
   transform: scale(1.05);
   transition: transform 0.2s;
 }
+
+
+
+

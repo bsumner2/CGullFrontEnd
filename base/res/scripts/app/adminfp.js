@@ -17,7 +17,7 @@ app.factory('FPCtx', function() {
 
 
 
-app.controller('FrontPageController', function($scope, $window, $http, FPCtx) {
+app.controller('AdminFrontPageController', function($scope, $window, $http, FPCtx) {
   var frontPage = this;
   frontPage.listings = [];
   frontPage.apiAddr = API_ADDR;
@@ -78,8 +78,8 @@ app.controller('FrontPageController', function($scope, $window, $http, FPCtx) {
     );
   };
 
-  frontPage.redirectToItemPage = function(itm) {
-    $window.location.href = 'item.html?id='+itm.id;
+  frontPage.redirectToItemEditorPage = function(itm) {
+    $window.location.href = 'admin_item.html?id='+itm.id;
   };
 });
 
