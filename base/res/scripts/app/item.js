@@ -1,4 +1,4 @@
-app.controller('AdminItemController', function($scope, $window, $http) {
+app.controller('ItemController', function($scope, $window, $http) {
   var itemHandle = this;
   $scope.invalidEmail=false;
   itemHandle.id = location.search.substring(4, 10);
